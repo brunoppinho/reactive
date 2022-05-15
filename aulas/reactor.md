@@ -71,10 +71,16 @@ Adicionando nosso subscriber.
 
 ## Backpressure
 
-> Backpressure or the ability for the consumer to signal the producer that the rate of emission is too high - [Reactor Reference](https://projectreactor.io/docs/core/3.4.6/reference/index.html)
+> Backpressure or the ability for the consumer to signal the producer that the rate of emission is too high
+
+- [Reactor Reference](https://projectreactor.io/docs/core/3.4.6/reference/index.html)
 
 Temos o controle e avisamos para o nosso produtor qual é a nossa taxa de consumo e só continuamos a consumir após
 estarmos pronto para mais dados.
+
+Podemos pensar na implementação de uma newsletter. Uma pessoa irá escrever uma série de artigos de uma vez, sendo que o
+envio para os usuários deve ocorrer uma vez por dia. Então utilizamos o backpressure para segurar o que já foi feito
+para ser processado em outro momento.
 
 [Exemplo](../reactor/src/main/java/br/com/letscode/reactor/exemplos/Backpressure.java)
 [Subscriber](../reactor/src/main/java/br/com/letscode/reactor/subscriber/BackpressureSubscriber.java)
@@ -98,6 +104,9 @@ indefinidamente. Uma das formas de criar um fluxo infinito é criando um *Connec
 infinito de dados.
 
 Nesse caso o fluxo só começa a rodar quando nos conectamos a ele.
+
+Um caso de uso aonde podemos aplicar o fluxo indeterminado seria, por exemplo, tratando geolocalização, aonde o fluxo de
+informação seria contínuo.
 
 [Exemplo](../reactor/src/main/java/br/com/letscode/reactor/exemplos/FluxoIndeterminado.java)
 
