@@ -1,0 +1,26 @@
+version: "3"
+services:
+  spring-app:
+    image: docker.io/letscode/flux-server:latest
+    ports:
+      - "8381:8080"
+    networks:
+      - letscode-flux
+    depends_on:
+      - mongo-banco
+    environment:
+      - SPRING_DATA_MONGODB_HOST=mongo-banco
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SERVER_PORT=8080
+
+  mongo-banco:
+    image: mongo:4
+    networks:
+      - letscode-flux
+    restart: always
+    ports:
+      - "27017:27017"
+
+networks:
+  letscode-flux:
